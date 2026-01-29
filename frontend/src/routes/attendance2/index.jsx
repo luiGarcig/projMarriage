@@ -1,6 +1,6 @@
 import { useState } from "react"
 import "./style.css"
-import { createFileRoute } from "@tanstack/react-router"
+import { createFileRoute, useNavigate } from "@tanstack/react-router"
 
 export const Route = createFileRoute("/attendance2/")({
   component: Attendance2,
@@ -8,6 +8,8 @@ export const Route = createFileRoute("/attendance2/")({
 
 function Attendance2() {
   const [names, setNames] = useState(["", ""])
+
+  const navigate = useNavigate()
 
   const handleNameChange = (index, value) => {
     const updated = [...names]
@@ -26,6 +28,7 @@ function Attendance2() {
     }
 
     console.log(validNames)
+    navigate({ to: "/giftList" })
   }
 
   return (

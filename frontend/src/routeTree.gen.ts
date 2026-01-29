@@ -13,6 +13,7 @@ import { Route as GiftListIndexRouteImport } from './routes/giftList/index'
 import { Route as Attendance4IndexRouteImport } from './routes/attendance4/index'
 import { Route as Attendance3IndexRouteImport } from './routes/attendance3/index'
 import { Route as Attendance2IndexRouteImport } from './routes/attendance2/index'
+import { Route as Attendance1IndexRouteImport } from './routes/attendance1/index'
 
 const GiftListIndexRoute = GiftListIndexRouteImport.update({
   id: '/giftList/',
@@ -34,14 +35,21 @@ const Attendance2IndexRoute = Attendance2IndexRouteImport.update({
   path: '/attendance2/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Attendance1IndexRoute = Attendance1IndexRouteImport.update({
+  id: '/attendance1/',
+  path: '/attendance1/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
+  '/attendance1/': typeof Attendance1IndexRoute
   '/attendance2/': typeof Attendance2IndexRoute
   '/attendance3/': typeof Attendance3IndexRoute
   '/attendance4/': typeof Attendance4IndexRoute
   '/giftList/': typeof GiftListIndexRoute
 }
 export interface FileRoutesByTo {
+  '/attendance1': typeof Attendance1IndexRoute
   '/attendance2': typeof Attendance2IndexRoute
   '/attendance3': typeof Attendance3IndexRoute
   '/attendance4': typeof Attendance4IndexRoute
@@ -49,6 +57,7 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/attendance1/': typeof Attendance1IndexRoute
   '/attendance2/': typeof Attendance2IndexRoute
   '/attendance3/': typeof Attendance3IndexRoute
   '/attendance4/': typeof Attendance4IndexRoute
@@ -56,11 +65,22 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/attendance2/' | '/attendance3/' | '/attendance4/' | '/giftList/'
+  fullPaths:
+    | '/attendance1/'
+    | '/attendance2/'
+    | '/attendance3/'
+    | '/attendance4/'
+    | '/giftList/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/attendance2' | '/attendance3' | '/attendance4' | '/giftList'
+  to:
+    | '/attendance1'
+    | '/attendance2'
+    | '/attendance3'
+    | '/attendance4'
+    | '/giftList'
   id:
     | '__root__'
+    | '/attendance1/'
     | '/attendance2/'
     | '/attendance3/'
     | '/attendance4/'
@@ -68,6 +88,7 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  Attendance1IndexRoute: typeof Attendance1IndexRoute
   Attendance2IndexRoute: typeof Attendance2IndexRoute
   Attendance3IndexRoute: typeof Attendance3IndexRoute
   Attendance4IndexRoute: typeof Attendance4IndexRoute
@@ -104,10 +125,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Attendance2IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/attendance1/': {
+      id: '/attendance1/'
+      path: '/attendance1'
+      fullPath: '/attendance1/'
+      preLoaderRoute: typeof Attendance1IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
+  Attendance1IndexRoute: Attendance1IndexRoute,
   Attendance2IndexRoute: Attendance2IndexRoute,
   Attendance3IndexRoute: Attendance3IndexRoute,
   Attendance4IndexRoute: Attendance4IndexRoute,

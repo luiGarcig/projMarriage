@@ -1,35 +1,26 @@
-
 import { useState } from "react"
 import "./style.css"
 import { createFileRoute, useNavigate } from "@tanstack/react-router"
 
-export const Route = createFileRoute("/attendance4/")({
-  component: Attendance4,
+export const Route = createFileRoute("/attendance1/")({
+  component: Attendance1,
 })
 
-function Attendance4() {
-  const [names, setNames] = useState(["", "", "", ""])
+function Attendance1() {
+  const [name, setName] = useState("")
 
   const navigate = useNavigate()
-
-  const handleNameChange = (index, value) => {
-    const updated = [...names]
-    updated[index] = value
-    setNames(updated)
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    const validNames = names.filter((name) => name.trim() !== "")
-
-    if (validNames.length === 0) {
+    if(name.trim() === ""){
       alert("Por favor, preencha pelo menos um nome.")
       return
     }
+    console.log(name.trim())
 
-    console.log(validNames)
-    navigate({ to: "/giftList" })
+    navigate({ to: "/giftList"})
   }
 
   return (
@@ -42,20 +33,15 @@ function Attendance4() {
 
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>Nomes dos Convidados</label>
-
-          {names.map((name, index) => (
-            <div key={index} className="guest-input-group">
+          <label>Nome do Convidado</label>
+            <div className="guest-input-group">
               <input
                 type="text"
                 placeholder={`Nome Completo`}
                 value={name}
-                onChange={(e) =>
-                  handleNameChange(index, e.target.value)
-                }
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
-          ))}
         </div>
 
         <button type="submit" className="btn-confirm">
@@ -65,4 +51,5 @@ function Attendance4() {
     </div>
   )
 }
+
 
