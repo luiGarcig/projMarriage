@@ -14,6 +14,7 @@ body {
   font-family: 'Cormorant Garamond', serif;
   margin: 0;
   background-image: url('/flower.jpeg');
+  background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

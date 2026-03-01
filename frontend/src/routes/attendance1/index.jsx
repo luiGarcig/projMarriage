@@ -1,6 +1,7 @@
 import { useState } from "react"
 import "./style.css"
 import { createFileRoute, useNavigate } from "@tanstack/react-router"
+import { apiPost } from "../../services/api";
 
 export const Route = createFileRoute("/attendance1/")({
   component: Attendance1,
@@ -8,20 +9,36 @@ export const Route = createFileRoute("/attendance1/")({
 
 function Attendance1() {
   const [name, setName] = useState("")
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
-    if(name.trim() === ""){
-      alert("Por favor, preencha pelo menos um nome.")
-      return
+    const cleanName = name.trim();
+    if (cleanName === "") {
+      alert("Por favor, preencha pelo menos um nome.");
+      return;
     }
-    console.log(name.trim())
 
-    navigate({ to: "/giftList"})
-  }
+    try {
+      setLoading(true);
+
+      const data = await apiPost("/api/visits", { name: cleanName });
+      console.log("visit_id:", data.visit_id);
+
+      localStorage.setItem("visit_id", data.visit_id);
+      localStorage.setItem("visit_name", cleanName);
+
+      navigate({ to: "/giftList" });
+    } catch (err) {
+      console.error(err);
+      alert("Não foi possível confirmar agora. Tente novamente.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="rsvp-container">
@@ -40,12 +57,13 @@ function Attendance1() {
                 placeholder={`Nome Completo`}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                disabled={loading}
               />
             </div>
         </div>
 
-        <button type="submit" className="btn-confirm">
-          Confirmar Tudo
+        <button type="submit" className="btn-confirm" disabled={loading}>
+          {loading ? "Enviando..." : "Confirmar Tudo"}
         </button>
       </form>
     </div>

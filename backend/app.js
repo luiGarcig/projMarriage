@@ -11,13 +11,14 @@ const app = express();
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: [
+    "http://localhost:5173",
+    "http://10.0.100.62:5173"
+  ],
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type"],
 }));
-
 app.use(cookieParser());
 
 const checkoutRouter = require('./routes/checkout');
@@ -25,7 +26,9 @@ const mpWebhookRouter = require('./routes/mercadopago-webhook');
 const healthRouter = require('./routes/health');
 const visitsRouter = require('./routes/visits');
 const paymentsRouter = require('./routes/payments');
+const giftsRouter = require('./routes/gifts');
 
+app.use('/api/gifts', giftsRouter);
 app.use('/api/payments', paymentsRouter);
 app.use('/api/visits', visitsRouter);
 app.use('/health', healthRouter);

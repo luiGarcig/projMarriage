@@ -7,3 +7,18 @@ export async function apiGet(path) {
   return res.json();
 }
 
+export async function apiPost(path, body) {
+  const url = `${API_URL}${path}`;
+  const res = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body ?? {}),
+  });
+
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(`HTTP ${res.status} - ${text}`);
+  }
+
+  return res.json();
+}

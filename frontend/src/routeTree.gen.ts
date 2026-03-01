@@ -14,6 +14,9 @@ import { Route as Attendance4IndexRouteImport } from './routes/attendance4/index
 import { Route as Attendance3IndexRouteImport } from './routes/attendance3/index'
 import { Route as Attendance2IndexRouteImport } from './routes/attendance2/index'
 import { Route as Attendance1IndexRouteImport } from './routes/attendance1/index'
+import { Route as CheckoutSuccessIndexRouteImport } from './routes/checkout/success/index'
+import { Route as CheckoutPendingIndexRouteImport } from './routes/checkout/pending/index'
+import { Route as CheckoutFailureIndexRouteImport } from './routes/checkout/failure/index'
 
 const GiftListIndexRoute = GiftListIndexRouteImport.update({
   id: '/giftList/',
@@ -40,6 +43,21 @@ const Attendance1IndexRoute = Attendance1IndexRouteImport.update({
   path: '/attendance1/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CheckoutSuccessIndexRoute = CheckoutSuccessIndexRouteImport.update({
+  id: '/checkout/success/',
+  path: '/checkout/success/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckoutPendingIndexRoute = CheckoutPendingIndexRouteImport.update({
+  id: '/checkout/pending/',
+  path: '/checkout/pending/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckoutFailureIndexRoute = CheckoutFailureIndexRouteImport.update({
+  id: '/checkout/failure/',
+  path: '/checkout/failure/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/attendance1/': typeof Attendance1IndexRoute
@@ -47,6 +65,9 @@ export interface FileRoutesByFullPath {
   '/attendance3/': typeof Attendance3IndexRoute
   '/attendance4/': typeof Attendance4IndexRoute
   '/giftList/': typeof GiftListIndexRoute
+  '/checkout/failure/': typeof CheckoutFailureIndexRoute
+  '/checkout/pending/': typeof CheckoutPendingIndexRoute
+  '/checkout/success/': typeof CheckoutSuccessIndexRoute
 }
 export interface FileRoutesByTo {
   '/attendance1': typeof Attendance1IndexRoute
@@ -54,6 +75,9 @@ export interface FileRoutesByTo {
   '/attendance3': typeof Attendance3IndexRoute
   '/attendance4': typeof Attendance4IndexRoute
   '/giftList': typeof GiftListIndexRoute
+  '/checkout/failure': typeof CheckoutFailureIndexRoute
+  '/checkout/pending': typeof CheckoutPendingIndexRoute
+  '/checkout/success': typeof CheckoutSuccessIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,6 +86,9 @@ export interface FileRoutesById {
   '/attendance3/': typeof Attendance3IndexRoute
   '/attendance4/': typeof Attendance4IndexRoute
   '/giftList/': typeof GiftListIndexRoute
+  '/checkout/failure/': typeof CheckoutFailureIndexRoute
+  '/checkout/pending/': typeof CheckoutPendingIndexRoute
+  '/checkout/success/': typeof CheckoutSuccessIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -71,6 +98,9 @@ export interface FileRouteTypes {
     | '/attendance3/'
     | '/attendance4/'
     | '/giftList/'
+    | '/checkout/failure/'
+    | '/checkout/pending/'
+    | '/checkout/success/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/attendance1'
@@ -78,6 +108,9 @@ export interface FileRouteTypes {
     | '/attendance3'
     | '/attendance4'
     | '/giftList'
+    | '/checkout/failure'
+    | '/checkout/pending'
+    | '/checkout/success'
   id:
     | '__root__'
     | '/attendance1/'
@@ -85,6 +118,9 @@ export interface FileRouteTypes {
     | '/attendance3/'
     | '/attendance4/'
     | '/giftList/'
+    | '/checkout/failure/'
+    | '/checkout/pending/'
+    | '/checkout/success/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -93,6 +129,9 @@ export interface RootRouteChildren {
   Attendance3IndexRoute: typeof Attendance3IndexRoute
   Attendance4IndexRoute: typeof Attendance4IndexRoute
   GiftListIndexRoute: typeof GiftListIndexRoute
+  CheckoutFailureIndexRoute: typeof CheckoutFailureIndexRoute
+  CheckoutPendingIndexRoute: typeof CheckoutPendingIndexRoute
+  CheckoutSuccessIndexRoute: typeof CheckoutSuccessIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -132,6 +171,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Attendance1IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/checkout/success/': {
+      id: '/checkout/success/'
+      path: '/checkout/success'
+      fullPath: '/checkout/success/'
+      preLoaderRoute: typeof CheckoutSuccessIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkout/pending/': {
+      id: '/checkout/pending/'
+      path: '/checkout/pending'
+      fullPath: '/checkout/pending/'
+      preLoaderRoute: typeof CheckoutPendingIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkout/failure/': {
+      id: '/checkout/failure/'
+      path: '/checkout/failure'
+      fullPath: '/checkout/failure/'
+      preLoaderRoute: typeof CheckoutFailureIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -141,6 +201,9 @@ const rootRouteChildren: RootRouteChildren = {
   Attendance3IndexRoute: Attendance3IndexRoute,
   Attendance4IndexRoute: Attendance4IndexRoute,
   GiftListIndexRoute: GiftListIndexRoute,
+  CheckoutFailureIndexRoute: CheckoutFailureIndexRoute,
+  CheckoutPendingIndexRoute: CheckoutPendingIndexRoute,
+  CheckoutSuccessIndexRoute: CheckoutSuccessIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

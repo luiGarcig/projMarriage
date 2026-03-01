@@ -1,14 +1,13 @@
-.rsvp-container {
-  background-color: rgb(255, 255, 255);
-  padding: 40px;
-  border-radius: 8px;
+.giftContainer {
+  background-color: #fff;
+  margin: 20px auto;            /* centraliza */
+  padding: clamp(16px, 3vw, 32px);
+  border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-  width: 100%;
-  max-width: 450px;
-  margin: 20px;
+  width: min(1200px, 92vw);     /* evita 100% com margin */
 }
 
-.rsvp-title {
+.giftTitle {
   font-family: 'Great Vibes', cursive;
   font-size: 2.5rem;
   color: var(--blue-color);
@@ -16,74 +15,50 @@
   text-align: center;
 }
 
-.rsvp-instruction {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
-  color: #666;
-  text-align: center;
-  margin-bottom: 25px;
-  line-height: 1.4;
-  padding: 0 10px;
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  align-items: stretch;
 }
 
-.form-group {
-  margin-bottom: 20px;
-  text-align: left;
-}
-
-.guest-input-group {
+.productCard {
+  border: 2px solid #ddd;
+  border-radius: 12px;
   display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 10px;
-  width: 100%;
-}
-
-.guest-input-group input {
-  flex: 1;
-}
-
-label {
-  display: block;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 8px;
-  color: #777;
-}
-
-input, select {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
-  color: var(--blue-color);
-  background: #fafafa;
+  flex-direction: column;
+  padding: 18px;
   box-sizing: border-box;
+  background: #fff;
 }
 
-input:focus, select:focus {
-  outline: none;
-  border-color: var(--blue-color);
-  background: white;
+.productCard img {
+  width: 100%;
+  aspect-ratio: 4 / 3;          /* mantém proporcional */
+  object-fit: contain;
+  border-radius: 10px;
+  background: rgba(15, 23, 41, 0.03);
+  margin-bottom: 14px;
+}
+
+.productCard h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  margin: 6px 0;
+  line-height: 1.2;
+}
+
+.productCard h1 + h1 {
+  font-size: 1.15rem;
+  opacity: 0.85;
+  margin-bottom: 10px;
 }
 
 button.btn-confirm {
+  margin-top: auto;             /* empurra pro fim do card */
   width: 100%;
-  padding: 15px;
-  background-color: var(--blue-color);
-  color: white;
-  border: none;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border-radius: 4px;
-  margin-top: 10px;
+  padding: 14px;
+  font-size: 1.05rem;
 }
 
 button.btn-confirm:hover {
@@ -92,10 +67,132 @@ button.btn-confirm:hover {
   box-shadow: 0 4px 10px rgba(58, 90, 128, 0.3);
 }
 
+
+.paginationWrap {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.paginationBar {
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px;
+  background: rgba(15, 23, 41, 0.04);
+  border: 1px solid rgba(15, 23, 41, 0.08);
+  border-radius: 12px;
+}
+
+.pageNumbers {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pageBtn {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(15, 23, 41, 0.12);
+  background: white;
+  color: #0F1729;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: 0.5px;
+}
+
+.pageBtn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+  border-color: rgba(15, 23, 41, 0.2);
+}
+
+.pageBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.pageNum {
+  min-width: 40px;
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 999px; /* pill */
+  border: 1px solid rgba(15, 23, 41, 0.12);
+  background: white;
+  color: #0F1729;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+}
+
+.pageNum:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+  border-color: rgba(15, 23, 41, 0.2);
+}
+
+.pageNum.active {
+  background: var(--blue-color);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 10px 22px rgba(58, 90, 128, 0.25);
+}
+
+.pageDots {
+  padding: 0 6px;
+  color: rgba(15, 23, 41, 0.55);
+  font-size: 1.2rem;
+  user-select: none;
+}
+
+.paginationMeta {
+  color: rgba(15, 23, 41, 0.75);
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: 0.3px;
+}
+
 @media (max-width: 600px) {
-  .rsvp-container {
-    padding: 25px 20px;
-    max-width: 90%; 
-    margin: 10px;
+  .paginationBar {
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .pageBtn {
+    padding: 10px 10px;
+  }
+
+  .pageNum {
+    min-width: 38px;
+    height: 38px;
+  }
+}
+
+@media (max-width: 520px) {
+  .giftTitle {
+    font-size: 2.9rem;           /* seu título é grande; no mobile fica melhor */
+  }
+
+  .products {
+    grid-template-columns: 1fr;  /* 1 coluna no celular */
+    gap: 16px;
+  }
+
+  .productCard {
+    padding: 16px;
+  }
+
+  .productCard img {
+    aspect-ratio: 1 / 1;         /* imagem mais “quadrada” no mobile */
   }
 }

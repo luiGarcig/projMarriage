@@ -1,0 +1,28 @@
+.rsvp-container {
+  background-color: #ffffff;
+  padding: 60px;              /* era 40 */
+  border-radius: 16px;        /* era 12 */
+  box-shadow: 0 20px 55px rgba(0,0,0,0.14);
+  width: min(720px, 92vw);    /* aumenta o card e mantém responsivo */
+  margin: 70px auto;          /* mais “respiro” */
+  text-align: center;
+}
+
+.rsvp-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3.4rem;          /* era 2.5rem */
+  margin-bottom: 18px;
+}
+
+.rsvp-image {
+  display: block;
+  margin: 26px auto;
+  width: 360px;               /* era 280 */
+  max-width: 100%;
+}
+
+.rsvp-text {
+  font-size: 1.5rem;
+  line-height: 1.8;
+}
+

@@ -8,5 +8,9 @@ export default defineConfig({
     react(),
     TanStackRouterVite(),
   ],
-})
+  server:{
+    host: true,
+    allowedHosts: 'all',
+  },
+});
 

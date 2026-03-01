@@ -1,43 +1,65 @@
-import { useState } from "react"
-import "./style.css"
-import { createFileRoute, useNavigate } from "@tanstack/react-router"
+
+import { useState } from "react";
+import "./style.css";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { apiPost } from "../../services/api"; // ajuste o caminho conforme seu projeto
 
 export const Route = createFileRoute("/attendance2/")({
   component: Attendance2,
-})
+});
 
 function Attendance2() {
-  const [names, setNames] = useState(["", ""])
+  const [names, setNames] = useState(["", ""]);
+  const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleNameChange = (index, value) => {
-    const updated = [...names]
-    updated[index] = value
-    setNames(updated)
-  }
+    const updated = [...names];
+    updated[index] = value;
+    setNames(updated);
+  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    const validNames = names.filter((name) => name.trim() !== "")
+    const validNames = names.map((n) => n.trim()).filter((n) => n !== "");
 
     if (validNames.length === 0) {
-      alert("Por favor, preencha pelo menos um nome.")
-      return
+      alert("Por favor, preencha pelo menos um nome.");
+      return;
     }
 
-    console.log(validNames)
-    navigate({ to: "/giftList" })
-  }
+    try {
+      setLoading(true);
+
+      // 1) envia todos os nomes para o backend (um POST por nome)
+      const results = await Promise.all(
+        validNames.map((n) => apiPost("/api/visits", { name: n }))
+      );
+
+      // 2) guarda os ids (pra você usar depois no /giftList se quiser)
+      const visitIds = results.map((r) => r.visit_id);
+      localStorage.setItem("visit_ids", JSON.stringify(visitIds));
+      localStorage.setItem("visit_names", JSON.stringify(validNames));
+
+      console.log("visit_ids:", visitIds);
+
+      // 3) navega
+      navigate({ to: "/giftList" });
+    } catch (err) {
+      console.error(err);
+      alert("Não foi possível confirmar agora. Tente novamente.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="rsvp-container">
       <h3 className="rsvp-title">Confirme sua Presença</h3>
 
-      <p className="rsvp-instruction">
-        Por favor, digite os nomes completos.
-      </p>
+      <p className="rsvp-instruction">Por favor, digite os nomes completos.</p>
 
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -47,22 +69,20 @@ function Attendance2() {
             <div key={index} className="guest-input-group">
               <input
                 type="text"
-                placeholder={`Nome Completo`}
+                placeholder="Nome Completo"
                 value={name}
-                onChange={(e) =>
-                  handleNameChange(index, e.target.value)
-                }
+                disabled={loading}
+                onChange={(e) => handleNameChange(index, e.target.value)}
               />
             </div>
           ))}
         </div>
 
-        <button type="submit" className="btn-confirm">
-          Confirmar Tudo
+        <button type="submit" className="btn-confirm" disabled={loading}>
+          {loading ? "Enviando..." : "Confirmar Tudo"}
         </button>
       </form>
     </div>
-  )
+  );
 }
-
 
