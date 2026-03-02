@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
         image
       FROM gifts
       ORDER BY name ASC
-      LIMIT ? OFFSET ?
+      LIMIT $1 OFFSET $2
       `,
       [limit, offset]
     );

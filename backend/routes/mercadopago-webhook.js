@@ -21,12 +21,12 @@ router.post('/', async (req, res) => {
     if (!externalRef) return res.status(200).send('ignored');
 
     // idempotência: se já está paid, não refaz
-    const localPayment = await db.get('SELECT status FROM payments WHERE id = ?', [externalRef]);
+    const localPayment = await db.get('SELECT status FROM payments WHERE id = $1', [externalRef]);
     if (!localPayment) return res.status(200).send('ok');
     if (localPayment.status === 'paid') return res.status(200).send('ok');
 
     await db.run(
-      'UPDATE payments SET status = ?, mp_payment_id = ?, paid_at = ? WHERE id = ?',
+      'UPDATE payments SET status = $1, mp_payment_id = $2, paid_at = $3 WHERE id = $4',
       ['paid', String(payment.id), Date.now(), externalRef]
     );
 

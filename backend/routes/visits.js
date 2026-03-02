@@ -10,7 +10,7 @@ router.post('/', async (req, res) => {
   const now = Date.now();
 
   await db.run(
-    'INSERT INTO visits (id, name, created_at) VALUES (?, ?, ?)',
+    'INSERT INTO visits (id, name, created_at) VALUES ($1, $2, $3)',
     [id, name, now]
   );
 

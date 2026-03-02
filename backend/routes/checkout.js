@@ -13,17 +13,17 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ error: 'visit_id e gift_id são obrigatórios' });
     }
 
-    const visit = await db.get('SELECT id FROM visits WHERE id = ?', [visit_id]);
+    const visit = await db.get('SELECT id FROM visits WHERE id = $1', [visit_id]);
     if (!visit) return res.status(404).json({ error: 'visit não encontrado' });
 
-    const gift = await db.get('SELECT id, name, price, link FROM gifts WHERE id = ?', [gift_id]);
+    const gift = await db.get('SELECT id, name, price, link FROM gifts WHERE id = $1', [gift_id]);
     if (!gift) return res.status(404).json({ error: 'gift não encontrado' });
 
     const paymentId = crypto.randomUUID();
     const now = Date.now();
 
     await db.run(
-      'INSERT INTO payments (id, visit_id, gift_id, status, created_at) VALUES (?, ?, ?, ?, ?)',
+      'INSERT INTO payments (id, visit_id, gift_id, status, created_at) VALUES ($1, $2, $3, $4, $5)',
       [paymentId, visit_id, gift_id, 'pending', now]
     );
 
