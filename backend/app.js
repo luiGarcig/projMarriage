@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "http://10.0.100.62:5173"
+    "https://projmarriage.onrender.com"
   ],
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type"],
