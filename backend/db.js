@@ -20,7 +20,7 @@ async function init() {
       id TEXT PRIMARY KEY,
       name TEXT NOT NULL,
       price INTEGER NOT NULL,
-      link TEXT NOT NULL
+      image TEXT NOT NULL
     );
 
     CREATE TABLE IF NOT EXISTS visits (
