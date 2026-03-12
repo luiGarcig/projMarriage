@@ -14,11 +14,13 @@
   margin-bottom: 18px;
 }
 
-.rsvp-image {
+.rsvp-imageS {
   display: block;
   margin: 26px auto;
-  width: 360px;               /* era 280 */
+  width: 300px;               /* era 280 */
   max-width: 100%;
+  color: #B6F181;
+  height: 300px;
 }
 
 .rsvp-text {

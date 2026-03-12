@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./style.css";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import PendingIcon from "../../../assets/pending.svg?react";
 
 export const Route = createFileRoute("/checkout/pending/")({
   component: Pending,
@@ -12,7 +13,7 @@ function Pending() {
   return (
     <div className="rsvp-container">
       <h3 className="rsvp-title">Pagamento sendo validado</h3>
-      <img src="/pending.svg" className="rsvp-image"/>
+      <PendingIcon className="rsvp-imageP" />
    </div>
  
   );

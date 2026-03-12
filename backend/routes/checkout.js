@@ -43,7 +43,7 @@ router.post('/', async (req, res) => {
     if (!publicBase)
       return res.status(500).json({ error: 'PUBLIC_BASE_URL não definido no .env' });
 
-    const successUrl = `${siteUrl}/checkout/sucess?pid=${paymentId}`;
+    const successUrl = `${siteUrl}/checkout/success?pid=${paymentId}`;
     const failureUrl = `${siteUrl}/checkout/failure?pid=${paymentId}`;
     const pendingUrl = `${siteUrl}/checkout/pending?pid=${paymentId}`;
     const notifyUrl = `${publicBase}/api/webhooks/mercadopago`;
