@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as Pos_attendanceIndexRouteImport } from './routes/pos_attendance/index'
 import { Route as GiftListIndexRouteImport } from './routes/giftList/index'
 import { Route as Attendance4IndexRouteImport } from './routes/attendance4/index'
 import { Route as Attendance3IndexRouteImport } from './routes/attendance3/index'
@@ -18,6 +19,11 @@ import { Route as CheckoutSuccessIndexRouteImport } from './routes/checkout/succ
 import { Route as CheckoutPendingIndexRouteImport } from './routes/checkout/pending/index'
 import { Route as CheckoutFailureIndexRouteImport } from './routes/checkout/failure/index'
 
+const Pos_attendanceIndexRoute = Pos_attendanceIndexRouteImport.update({
+  id: '/pos_attendance/',
+  path: '/pos_attendance/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GiftListIndexRoute = GiftListIndexRouteImport.update({
   id: '/giftList/',
   path: '/giftList/',
@@ -65,6 +71,7 @@ export interface FileRoutesByFullPath {
   '/attendance3/': typeof Attendance3IndexRoute
   '/attendance4/': typeof Attendance4IndexRoute
   '/giftList/': typeof GiftListIndexRoute
+  '/pos_attendance/': typeof Pos_attendanceIndexRoute
   '/checkout/failure/': typeof CheckoutFailureIndexRoute
   '/checkout/pending/': typeof CheckoutPendingIndexRoute
   '/checkout/success/': typeof CheckoutSuccessIndexRoute
@@ -75,6 +82,7 @@ export interface FileRoutesByTo {
   '/attendance3': typeof Attendance3IndexRoute
   '/attendance4': typeof Attendance4IndexRoute
   '/giftList': typeof GiftListIndexRoute
+  '/pos_attendance': typeof Pos_attendanceIndexRoute
   '/checkout/failure': typeof CheckoutFailureIndexRoute
   '/checkout/pending': typeof CheckoutPendingIndexRoute
   '/checkout/success': typeof CheckoutSuccessIndexRoute
@@ -86,6 +94,7 @@ export interface FileRoutesById {
   '/attendance3/': typeof Attendance3IndexRoute
   '/attendance4/': typeof Attendance4IndexRoute
   '/giftList/': typeof GiftListIndexRoute
+  '/pos_attendance/': typeof Pos_attendanceIndexRoute
   '/checkout/failure/': typeof CheckoutFailureIndexRoute
   '/checkout/pending/': typeof CheckoutPendingIndexRoute
   '/checkout/success/': typeof CheckoutSuccessIndexRoute
@@ -98,6 +107,7 @@ export interface FileRouteTypes {
     | '/attendance3/'
     | '/attendance4/'
     | '/giftList/'
+    | '/pos_attendance/'
     | '/checkout/failure/'
     | '/checkout/pending/'
     | '/checkout/success/'
@@ -108,6 +118,7 @@ export interface FileRouteTypes {
     | '/attendance3'
     | '/attendance4'
     | '/giftList'
+    | '/pos_attendance'
     | '/checkout/failure'
     | '/checkout/pending'
     | '/checkout/success'
@@ -118,6 +129,7 @@ export interface FileRouteTypes {
     | '/attendance3/'
     | '/attendance4/'
     | '/giftList/'
+    | '/pos_attendance/'
     | '/checkout/failure/'
     | '/checkout/pending/'
     | '/checkout/success/'
@@ -129,6 +141,7 @@ export interface RootRouteChildren {
   Attendance3IndexRoute: typeof Attendance3IndexRoute
   Attendance4IndexRoute: typeof Attendance4IndexRoute
   GiftListIndexRoute: typeof GiftListIndexRoute
+  Pos_attendanceIndexRoute: typeof Pos_attendanceIndexRoute
   CheckoutFailureIndexRoute: typeof CheckoutFailureIndexRoute
   CheckoutPendingIndexRoute: typeof CheckoutPendingIndexRoute
   CheckoutSuccessIndexRoute: typeof CheckoutSuccessIndexRoute
@@ -136,6 +149,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/pos_attendance/': {
+      id: '/pos_attendance/'
+      path: '/pos_attendance'
+      fullPath: '/pos_attendance/'
+      preLoaderRoute: typeof Pos_attendanceIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/giftList/': {
       id: '/giftList/'
       path: '/giftList'
@@ -201,6 +221,7 @@ const rootRouteChildren: RootRouteChildren = {
   Attendance3IndexRoute: Attendance3IndexRoute,
   Attendance4IndexRoute: Attendance4IndexRoute,
   GiftListIndexRoute: GiftListIndexRoute,
+  Pos_attendanceIndexRoute: Pos_attendanceIndexRoute,
   CheckoutFailureIndexRoute: CheckoutFailureIndexRoute,
   CheckoutPendingIndexRoute: CheckoutPendingIndexRoute,
   CheckoutSuccessIndexRoute: CheckoutSuccessIndexRoute,
