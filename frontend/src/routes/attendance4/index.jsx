@@ -45,7 +45,7 @@ function Attendance4() {
 
       console.log("visit_ids:", visitIds);
 
-      navigate({ to: "/giftList" });
+      navigate({ to: "/pos_attendance" });
     } catch (err) {
       console.error(err);
       alert("Erro ao confirmar presença. Tente novamente.");

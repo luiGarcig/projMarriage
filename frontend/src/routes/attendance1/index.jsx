@@ -31,7 +31,7 @@ function Attendance1() {
       localStorage.setItem("visit_id", data.visit_id);
       localStorage.setItem("visit_name", cleanName);
 
-      navigate({ to: "/giftList" });
+      navigate({ to: "/pos_attendance" });
     } catch (err) {
       console.error(err);
       alert("Não foi possível confirmar agora. Tente novamente.");

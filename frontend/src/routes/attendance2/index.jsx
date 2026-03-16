@@ -46,7 +46,7 @@ function Attendance2() {
       console.log("visit_ids:", visitIds);
 
       // 3) navega
-      navigate({ to: "/giftList" });
+      navigate({ to: "/pos_attendance" });
     } catch (err) {
       console.error(err);
       alert("Não foi possível confirmar agora. Tente novamente.");
