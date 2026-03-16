@@ -42,7 +42,7 @@ button.btn-back{
   height: auto
 }
 
-@media (max-height: 670px){
+@media (max-width: 360px){
     .rsvp-imageA{
       width: 150px ;
     }

@@ -41,7 +41,7 @@ button.btn-back{
   margin-top: 10px;
 }
 
-@media (max-height: 670px){
+@media (max-width: 360px){
     .rsvp-imageF{
       width: 150px ;
     }
