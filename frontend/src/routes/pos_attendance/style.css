@@ -1,67 +1,53 @@
 .rsvp-container {
   background-color: #ffffff;
-  padding: clamp(24px, 5vw, 60px);
-  border-radius: 16px;
-  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.14);
-  width: min(720px, calc(100vw - 32px));
-  margin: clamp(24px, 6vw, 70px) auto;
+  padding: 30px;              /* era 40 */
+  border-radius: 16px;        /* era 12 */
+  box-shadow: 0 20px 55px rgba(0,0,0,0.14);
+  width: min(720px, 92vw);    /* aumenta o card e mantém responsivo */
+  margin: 90px auto;          /* mais “respiro” */
   text-align: center;
-  box-sizing: border-box;
 }
 
 .rsvp-title {
   font-family: 'Great Vibes', cursive;
-  font-size: clamp(2rem, 7vw, 3.4rem);
-  line-height: 1.1;
-  margin-bottom: 16px;
-}
-
-.rsvp-imageS {
-  display: block;
-  margin: 20px auto;
-  width: clamp(140px, 42vw, 300px);
-  height: auto;
-  max-width: 100%;
+  font-size: 3.4rem;          /* era 2.5rem */
+  margin-bottom: 18px;
 }
 
 .rsvp-text {
-  font-size: clamp(1.1rem, 4.5vw, 2rem);
-  line-height: 1.5;
-  margin: 0 auto 20px;
-  max-width: 28ch;
+  font-size: 2.5rem;
+  line-height: 1.8;
 }
 
-button.btn-back {
+button.btn-back{
   width: 100%;
-  padding: 14px 18px;
+  padding: 15px;
   background-color: var(--blue-color);
   color: white;
   border: none;
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1rem, 3.8vw, 1.1rem);
+  font-size: 1.1rem;
   text-transform: uppercase;
   letter-spacing: 2px;
   cursor: pointer;
   transition: all 0.3s ease;
-  border-radius: 6px;
+  border-radius: 4px;
   margin-top: 10px;
 }
 
-button.btn-back:hover {
-  opacity: 0.92;
+
+.rsvp-imageA{
+  color: #B6F181;
+  width: 300px;
+  height: auto
 }
 
-button.btn-back:active {
-  transform: scale(0.98);
-}
+@media (max-height: 670px){
+    .rsvp-imageA{
+      width: 150px ;
+    }
 
-@media (max-width: 480px) {
-  .rsvp-container {
-    border-radius: 12px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-  }
-
-  .rsvp-text {
-    max-width: 100%;
-  }
+    .rsvp-text{
+      font-size: 1.8rem !important;
+    }
 }

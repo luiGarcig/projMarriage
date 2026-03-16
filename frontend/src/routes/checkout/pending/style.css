@@ -1,10 +1,10 @@
 .rsvp-container {
   background-color: #ffffff;
-  padding: 60px;              /* era 40 */
+  padding: 30px;              /* era 40 */
   border-radius: 16px;        /* era 12 */
   box-shadow: 0 20px 55px rgba(0,0,0,0.14);
   width: min(720px, 92vw);    /* aumenta o card e mantém responsivo */
-  margin: 70px auto;          /* mais “respiro” */
+  margin: 90px auto;          /* mais “respiro” */
   text-align: center;
 }
 
@@ -15,11 +15,8 @@
 }
 
 .rsvp-imageP {
-  display: block;
-  margin: 26px auto;
   width: 300px;
-  height: 300px;
-  max-width: 100%;
+  height: auto;
   color: #FDED00;
 }
 
@@ -28,3 +25,12 @@
   line-height: 1.8;
 }
 
+@media (max-height: 670px){
+    .rsvp-imageP{
+      width: 150px ;
+    }
+
+    .rsvp-text{
+      font-size: 1.8rem !important;
+    }
+}

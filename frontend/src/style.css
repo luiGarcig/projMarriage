@@ -28,7 +28,6 @@ body {
 .container {
   width: 100%;
   min-height: calc(100vh - var(--nav-height));
-  padding-top: var(--nav-height);
   display: flex;
   align-items: center;
   justify-content: center;
