@@ -8,10 +8,10 @@ if (!connectionString) {
 }
 
 const pool = new Pool({
-  connectionString,
-  ssl: process.env.NODE_ENV === 'production'
-    ? { rejectUnauthorized: false }
-    : false,
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  },
 });
 
 async function init() {
