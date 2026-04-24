@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://proj-marriage.vercel.app"
+    "https://proj-marriage2.vercel.app"
   ],
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type"],
